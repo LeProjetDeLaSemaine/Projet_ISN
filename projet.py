@@ -53,4 +53,4 @@ def decompresser(content):
 
 
 print(compresser("AAADDDDEEEEEDDDBBBBCDGKHEJGFDJFFFFFFFFFFFFFFFFFFFFF"))
-print(decompresser("3A4D5E3D4B1C1D1G1K1H1E1J1G1F1D1J21F"))
+print(decompresser("3A4D5E3D4BCDGKHEJGFDJ21F"))
