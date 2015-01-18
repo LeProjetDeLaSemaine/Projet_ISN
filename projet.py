@@ -17,10 +17,10 @@ def isInt(s):
 		return False
 
 def grouper(content, indexInitial=0, chaineCompresse = ""): #grouper est une fonction recursive terminale, retirant le risque de l'erreur Stack Overflow
-        #renvoie la chaine de caractère passée en premier argument sous forme compressée selon la compression basique décrite ci-dessus"""
-        #content: chaine de caractère à compresser"""
-        #indexInitial: argument privé à ne pas modifier à l'appel"""
-        #chaineCompresse: argument privé à ne pas modifier à l'appel, contient la chaine compressée élaboré au fil des récursions"""
+        #renvoie la chaine de caractère passée en premier argument sous forme compressée selon la compression basique décrite ci-dessus
+        #content: chaine de caractère à compresser
+        #indexInitial: argument privé à ne pas modifier à l'appel
+        #chaineCompresse: argument privé à ne pas modifier à l'appel, contient la chaine compressée élaboré au fil des récursions
     compteur = 0
     indexCourant = indexInitial 
     while(content[indexCourant] == content[indexInitial]):
