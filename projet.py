@@ -16,11 +16,16 @@ def isInt(s):
 	except ValueError:
 		return False
 
-def grouper(content): #grouper() est une fonction récursive (elle s'appelle elle-même)
-	for i in range(len(content)): #on boucle dans la longueur de la chaîne à compresser
-		if content[i] != content[0]: #si content[i] est différent de content[0]
-			return str(i) + content[0] + grouper(content[i:]) #on retourne le nombdre d'occurrences suivi du caractère et on passe au caractère suivant
-	return (str(i+1) if i > 0 else "") + content[0] #marche pas bouuuuuuuuuuuuuuuh-> NEED TO FIX
+def grouper(content, start=0, newstr = ""): #grouper est une fonction recursive terminale, retirant le risque de l'erreur Stack Overflow
+    i = start
+    j = 0
+    try:
+        while(content[i] == content[start]):
+            i+=1
+            j+=1
+    except IndexError:
+        return (newstr + (str(j) if j>1 else "") + content[start])
+    return grouper(content, i , (newstr + (str(j) if j>1 else "") + content[start]))
 
 def compresser(content):
 	c = grouper(content) #on compresse
