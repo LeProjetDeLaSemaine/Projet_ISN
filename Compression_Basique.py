@@ -5,6 +5,7 @@
 # Principe : On remplace les répétitions d'un caractère par le nombre de
 # répétitions, suivi du caractère lui-même : aaabbc => 3a2bc
 
+
 def isInt(s):
 	try: #Oui, j'utilise un try/except, honte à moi...
 		int(s)
@@ -26,6 +27,21 @@ def compresser(content):
 	cntnt += str(n if n > 1 else "") + precedent #il faut mettre le dernier caractère manuellement... A peaufiner 
 	return (cntnt if len(cntnt) < len(content) else content) #on retourne la chaîne compressée si elle est plus courte que l'originale
 
+def compressionFichier(fichier,destinataire,Decompression = 0):
+        #Si Decompression = 1, alors décompression, sinon compression
+        #Le codeur intelligent comprendra de lui-même, il n'est plus l'heure de commenter
+        if ((fichier[-3] + fichier[-2] + fichier[-1]) == "txt"):
+                with open(fichier,'r') as file:
+                        content = file.read()
+                        file.close
+                NewStr = (decompresser(content) if Decompression else compresser(content))
+                with open(destinataire ,'w') as file:
+                        file.write(NewStr)
+                        file.close
+
+        
+        
+
 def decompresser(content):
 	d = "" #d contiendra la chaîne décompressée
 	n = 0 #compteur
@@ -38,6 +54,12 @@ def decompresser(content):
 			n = 0 #on reset pour passer au caractère suivant
 	return d #on retourne d (you don't say)
 
+#Tests de compression de chaine
 
 print(compresser("AAADDDDEEEEEDDDBBBBCDGKHEJGFDJFFFFFFFFFFFFFFFFFFFFF"))
 print(decompresser("3A4D5E3D4B1C1D1G1K1H1E1J1G1F1D1J21F"))
+
+#Tests de compression de fichier
+
+compressionFichier("Fichiers\\CompressionBasique\\TexteInitial.txt","Fichiers\\CompressionBasique\\TexteCompressé.txt")
+compressionFichier("Fichiers\\DécompressionBasique\\TexteCompressé.txt","Fichiers\\DécompressionBasique\\TexteDecompressé.txt",1)
