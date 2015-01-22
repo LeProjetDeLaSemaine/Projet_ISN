@@ -52,10 +52,10 @@ def compressionFichier(origine, destination, op):
 		with open(origine, 'r') as file: #on ouvre le fichier devant être traité en mode lecture
 			content = file.read()
 			file.close() #On ferme le fichier
-			newStr = (compresser(content) if op == 'c' else decompresser(content))
-			with open(destinatation ,'w') as file: #On ouvre le fichier de destination en mode écriture
-				file.write(newStr) #On écrit le résultat dans le fichier
-				file.close() # On ferme le fichier
+		newStr = (compresser(content) if op == 'c' else decompresser(content))
+		with open(destinatation ,'w') as file: #On ouvre le fichier de destination en mode écriture
+			file.write(newStr) #On écrit le résultat dans le fichier
+			file.close() # On ferme le fichier
 	else:
 		erreur("Type de fichier incorrect.")
 
