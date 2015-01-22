@@ -12,6 +12,9 @@ def isInt(s):
 		return True
 	except ValueError:
 		return False
+		
+def erreur(motif):
+	print("[Erreur] " + motif)
 
 def compresser(content):
 	cntnt = "" #cntnt est la version compressée de content (eh oui lololol)
@@ -27,34 +30,6 @@ def compresser(content):
 	cntnt += str(n if n > 1 else "") + precedent #il faut mettre le dernier caractère manuellement... A peaufiner 
 	return (cntnt if len(cntnt) < len(content) else content) #on retourne la chaîne compressée si elle est plus courte que l'originale
 
-def compressionFichier(fichier,destinataire,operation):
-        #Compresse un fichier texte brut
-        #fichier: chemin du fichier devant être traité
-        #destinataire : chemin du fichier de destination du traitement
-        #operation: determine l'operation qui va être effectuée: 'c' pour une compression, 'd' pour une decompression
-        #Renvoie True si la compression/decompression n'a rencontré de problème, sinon False
-        
-        if ((fichier[-4:] == ".txt") and (destinataire[-4:] == ".txt")) : #On vérifie que les fichier passés en argument sont bien du type txt (en detectant l'extention .txt)
-                with open(fichier,'r') as file: # on ouvre le fichier devant être traité en mode lecture
-                        content = file.read()
-                        file.close      #On ferme le fichier
-                if(operation == 'c'): # On determine l'operation devant être effectuée
-                        newStr = compresser(content)
-                elif(operation == 'd'):
-                        newStr = decompresser(content)
-                else:
-                        #L'operation est inexistante, on renvoie False
-                        return False 
-                with open(destinataire ,'w') as file: #On ouvre le fichier de destination en mode ecriture
-                        file.write(newStr) #On écrit le texte compressé dans le fichier
-                        file.close # On ferme le fichier
-                return True # L'opération s'est passé normalement, on renvoie True
-        else:
-                return False # le fichier n'est pas de type txt, on renvoie False
-
-        
-        
-
 def decompresser(content):
 	d = "" #d contiendra la chaîne décompressée
 	n = 0 #compteur
@@ -66,13 +41,29 @@ def decompresser(content):
 				d += c #on ajoute n fois le caractère à c
 			n = 0 #on reset pour passer au caractère suivant
 	return d #on retourne d (you don't say)
+	
+
+def compressionFichier(origine, destination, op):
+	#Compresse un fichier contenant du texte brut
+	if op not in ('c', 'd'):
+		erreur("Opération non reconnue.")
+		return
+	if ((origine[-4:] == ".txt") and (destination[-4:] == ".txt")) : #On vérifie que les fichiers passés comme arguments sont bien du type txt (en détectant l'extension .txt)
+		with open(origine, 'r') as file: #on ouvre le fichier devant être traité en mode lecture
+			content = file.read()
+			file.close() #On ferme le fichier
+			newStr = (compresser(content) if op == 'c' else decompresser(content))
+			with open(destinatation ,'w') as file: #On ouvre le fichier de destination en mode écriture
+				file.write(newStr) #On écrit le résultat dans le fichier
+				file.close() # On ferme le fichier
+	else:
+		erreur("Type de fichier incorrect.")
+
 
 #Tests de compression de chaine
-
 print(compresser("AAADDDDEEEEEDDDBBBBCDGKHEJGFDJFFFFFFFFFFFFFFFFFFFFF"))
 print(decompresser("3A4D5E3D4B1C1D1G1K1H1E1J1G1F1D1J21F"))
 
 #Tests de compression de fichier
-
-compressionFichier("Fichiers\\CompressionBasique\\TexteInitial.txt","Fichiers\\CompressionBasique\\TexteCompressé.txt", 'c')
-compressionFichier("Fichiers\\DécompressionBasique\\TexteCompressé.txt","Fichiers\\DécompressionBasique\\TexteDecompressé.txt",'d')
+compressionFichier("Fichiers\\CompressionBasique\\TexteInitial.txt", "Fichiers\\CompressionBasique\\TexteCompressé.txt", 'c')
+compressionFichier("Fichiers\\DécompressionBasique\\TexteCompressé.txt", "Fichiers\\DécompressionBasique\\TexteDecompressé.txt", 'd')
