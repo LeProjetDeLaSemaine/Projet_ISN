@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 #-*- coding: utf-8 -*-
 
-from Utilitaires import isInt, erreur, compressionFichier
+from Utilitaires import isInt, erreur
 
 def construireDict(content):
 	dico = {}
@@ -19,9 +19,8 @@ def construireArbre(dico):
 	return tas
 	
 def compression(content):
-	pass
+        print("non implémenté")
 	
 def decompression(content):
-	pass
+	print("non implémenté")
 	
-print(construireDict("lalalalalalalaburegeuskrbrej"))

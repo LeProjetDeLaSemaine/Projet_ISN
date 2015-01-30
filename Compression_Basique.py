@@ -5,7 +5,7 @@
 # Principe : On remplace les répétitions d'un caractère par le nombre de
 # répétitions, suivi du caractère lui-même : aaabbc => 3a2bc
 
-from Utilitaires import isInt, erreur, compressionFichier
+from Utilitaires import isInt, erreur
 
 #COMPRESSION/DECOMPRESSION
 def compresser(content):
@@ -35,10 +35,4 @@ def decompresser(content):
 	return d #on retourne d (you don't say)
 
 
-#Tests de compression de chaine
-print(compresser("AAADDDDEEEEEDDDBBBBCDGKHEJGFDJFFFFFFFFFFFFFFFFFFFFF"))
-print(decompresser("3A4D5E3D4B1C1D1G1K1H1E1J1G1F1D1J21F"))
 
-#Tests de compression de fichier
-#compressionFichier("Fichiers\\CompressionBasique\\TexteInitial.txt", "Fichiers\\CompressionBasique\\TexteCompressé.txt", 'c')
-#compressionFichier("Fichiers\\DécompressionBasique\\TexteCompressé.txt", "Fichiers\\DécompressionBasique\\TexteDecompressé.txt", 'd')
