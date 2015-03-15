@@ -5,7 +5,6 @@ def transformation(chaine):
     #   chaine: chaine à transformer
     #renvoie une chaine de caractères transformée
     chaineTransformee = ""
-    iterateur = 0
     tableau = [[char for char in chaine] for i in range(0,len(chaine))]
 
     #ON CONSTRUIT LE TABLEAU DE TRANSFORMATION (sous forme de liste bidimensionelle)
