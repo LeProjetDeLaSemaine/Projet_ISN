@@ -30,7 +30,7 @@ def transformation(chaine):
     index = -1
     for i in range(len(chaine)):
         if(strTableau[i] == chaine):
-            index = i + 1
+            index = i 
 
     #ON CONSTITUE ENFIN LA CHAINE TRANSFORMEE
 
