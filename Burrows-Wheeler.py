@@ -30,12 +30,12 @@ def transformation(chaine):
     index = -1
     for i in range(len(chaine)):
         if(strTableau[i] == chaine):
-            index = i
+            index = i + 1
 
     #ON CONSTITUE ENFIN LA CHAINE TRANSFORMEE
 
     for liste in strTableau:
-        chaineTransformee += liste[0]
+        chaineTransformee += liste[-1]
     return str(index) + chaineTransformee
 
 def decodage(chaine):
