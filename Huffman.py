@@ -2,6 +2,7 @@
 #-*- coding: utf-8 -*-
 
 from Utilitaires import isInt, erreur, compressionFichier
+debug = 0
 
 def construireDico(content): #Construire un dictionnaire qui associe à chaque caractère sa fréquence
 	dico = {} #on crée un dictionnaire
@@ -13,43 +14,54 @@ def construireDico(content): #Construire un dictionnaire qui associe à chaque c
 	return dico #on retourne le dictionnaire
 	
 def construireArbre(dico): #construit un arbre (tas binaire) petit à petit en mode yolo (je suis fatigué ok ???)
-	#tas = [(n, c) for n, c in dico.items()]
-	tas = {} #le tas sera un dictionnaire de la forme {0: branche_gauche, 1: branche_droite}
-	while len(dico.keys()) >= 2: #tant qu'on a plus de deux caractères non traités
-		n1 = min(dico.values()) #la plus petite des valeurs -> le plus petit poids
-		noeud1 = [key for key in dico if dico[key] == n1][0] #on cherche la clé associée à la plus petite valeur (pardon)
-		dico.pop(noeud1) #on le supprime puisqu'il est traité
+	tas = [(n, c) for c, n in dico.items()]
+	tas = sorted(tas, reverse=True) #bof, mais confère une sûreté : si deux lettres ont le même nombre d'occurrences, le loop dans le dico échange parfois leur place (du fait de la nature non ordonnée des dictionnaires)
+	while len(tas) >= 2:
+		if debug: print("TAS =", tas)
+		tas = sorted(tas, key=lambda tup: tup[0], reverse=True) #on trie de façon décroissante, de façon à pouvoir utiliser pop() pour avoir l'élément de plus petit poids
+		n1, noeud1 = tas.pop() #on récupère le noeud de plus petit poids
+		n2, noeud2 = tas.pop() #et le 2e noeud de plus petit poids
+		if debug: print('(' + str(n1) + ", " + str(noeud1) + ')')
+		if debug: print('(' + str(n2) + ", " + str(noeud2) + ')')
+		tas.append((n1+n2, {0: noeud1, 1: noeud2})) #on remet notre arbrisseau dans le tas, ou il sera traité en fonction de son poids 
 		
-		#idem pour le deuxième plus petit poids
-		n2 = min(dico.values())
-		noeud2 = [key for key in dico if dico[key] == n2][0]
-		dico.pop(noeud2)
-		print(dico)
-		#tas = {0: ???, 1: {0: noeud1, 1:noeud2}}
-		#Ajouter au tas un nouveau node qui a n1+n2 comme poids et n1 et n2 comme fils
-	return tas #ou un pop de tas ?
+	return tas[0][1] #à la fin, on a une liste contenant un unique tuple (d'où le [0]), qui contient un poids et un dictionnaire, que l'on veut (d'où le [1])
 	
 def genererCode(arbre, cod = {}, prefixe = ''):
 	for nd in arbre: #on boucle pour chaque noeud dans l'arbre
 		if len(arbre[nd]) == 1: #si le noeud n'a qu'une longueur de 1, c'est à dire s'il ne contient pas de "branches"
 			cod[arbre[nd]] = prefixe+str(nd) #on l'ajoute au code avec pour clé la valeur binaire et pour valeur la lettre
 		else: #sinon
-			genererCode(arbre[nd], cod, prefixe+str(nd)) #jolie récursion : on appelle la fonction avec cod et l'arbrisseau qu'est nd
+			genererCode(arbre[nd], cod, prefixe+str(nd)) #jolie récursion : on appelle la fonction avec cod et le parcours d'arbrisseau qu'est nd
 	return cod #on retourne enfin le code
 	
 def encoder(content, cod):
 	binaire = ""
-	for c in content:
-		binaire += cod[c]
+	for c in content: #on boucle à travers les caractères de la chaîne à encoder
+		binaire += cod[c] #on ajoute à la représentation binaire du texte le mot binaire correspondant à chaque caractère
 	return binaire
+	
+def decoder(binaire, cod):
+	cod = {n: c for c, n in cod.items()} #on inverse les clés et leurs valeurs, afin de pouvoir accéder aux lettres à partir du binaire
+	texte = ""
+	tmp = ""
+	for b in binaire: #on boucle dans notre chaîne binaire
+		tmp += b #on ajoute le caractère 
+		if tmp in cod: #si tmp correspond au mot binaire associé à un caractère de notre code
+			texte += cod[tmp] #on ajoute ce caractère au texte décodé
+			tmp = "" #et on réinitialise tmp
+	return texte
 
 def compression(content):
-	dico = construireDico()
+	dico = construireDico(content)
 	arbre = construireArbre(dico)
 	cod = genererCode(arbre)	
-	chn = encoder(content, cod)
-	
-def decompression(content):
-	pass
-	
-print(construireArbre(construireDico("BLABLABLA")))
+	binaire = encoder(content, cod)
+	return binaire, cod	
+
+dico = construireDico("MISSISSIPPI RIVER")
+arbre = construireArbre(dico)
+cod = genererCode(arbre)
+binaire = encoder("MISSISSIPPI RIVER", cod)
+print(binaire)
+print(decoder(binaire, cod))
