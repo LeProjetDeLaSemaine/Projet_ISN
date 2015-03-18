@@ -1,45 +1,28 @@
+#!/usr/bin/python
 #-*- coding:utf-8 -*-
 
 def transformation(chaine):
-    #Transforme une chaine de caractère selon l'algorithme de la transformée de Burrows-Wheeler
-    #   chaine: chaine à transformer
-    #renvoie une chaine de caractères transformée
-    chaineTransformee = ""
-    tableau = [[char for char in chaine] for i in range(0,len(chaine))]
-
-    #ON CONSTRUIT LE TABLEAU DE TRANSFORMATION (sous forme de liste bidimensionelle)
-    
-    for i in range(0,len(tableau)-1):
-        nouveauTableau = [tableau[i][j+1] for j in range(0,len(chaine)-1)]
-        nouveauTableau.append(tableau[i][0])
-        tableau[i+1] = nouveauTableau
-
-    #ON TRANSFORME LE TABLEAU EN UNE LISTE DE CHAINES DE CARACTERE
-        
-    strTableau = ["" for i in range(0,len(chaine))]
-    for i in range(len(chaine)):
-        for j in range(len(chaine)):
-            strTableau[i] += tableau[i][j]
-
-    #ON TRIE LE TABLEAU PAR ORDRE ALPHABÊTIQUE
-
-    strTableau.sort() #On utilise ici une méthode de l'objet liste qu'il aurait été trop fastidieux de recoder
-
-    #ON RECUPERE L'INDEX DE LA CHAINE INITIALE DANS LE TABLEAU TRIE
-
-    index = -1
-    for i in range(len(chaine)):
-        if(strTableau[i] == chaine):
-            index = i 
-
-    #ON CONSTITUE ENFIN LA CHAINE TRANSFORMEE
-
-    for liste in strTableau:
-        chaineTransformee += liste[-1]
-    return str(index) + chaineTransformee
+	#Transforme une chaine de caractère selon l'algorithme de la transformée de Burrows-Wheeler
+	#   chaine: chaine à transformer
+	#renvoie une chaine de caractères transformée
+	
+	l = len(chaine) #bonnes pratiques :-P
+	tableau = ["" for i in range(l)] #on crée une liste de chaînes de caractères (qui sont des listes) avec l entrées
+	
+	for i in range(l):
+		tableau[i] = chaine[i:] + chaine[:i] #avec un peu d'astuce, cette ligne permet de prendre les lettres après i et d'y ajouter celles avant i #fierté #ilovepython
+	tableau.sort() #On utilise ici une méthode de l'objet liste qu'il aurait été trop fastidieux de recoder
+	
+	chaineTransformee = "" #texte transformé
+	index = int() #index du texte original dans tab
+	
+	for i in range(l):
+		chaineTransformee += tableau[i][l-1:] #la chaîne transformée est celle composée des derniers caractères de chaque chaîne du tableau => la dernière colonne 
+		if tableau[i] == chaine:
+			index = i
+	return str(index) + chaineTransformee #on retourne l'index de la chaîne originale dans le tableau trié suivi de la chaîne transformée
 
 def decodage(chaine):
-    pass
-    
-
+	pass #pas fait
+	
 print(transformation("MISSISSIPI RIVER"))
