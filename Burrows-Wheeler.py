@@ -1,3 +1,4 @@
+#copyright © 2015 Ernest Foussard et Clément Doumergue
 #!/usr/bin/python
 #-*- coding:utf-8 -*-
 
