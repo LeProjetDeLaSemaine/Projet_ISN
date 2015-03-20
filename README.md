@@ -9,4 +9,5 @@ Actuellement, le projet comporte :
 - une implémentation du codage par plages, qui détecte les caractères répétés et les remplace par le nombre de répétitions suivi du caractère.
 - une implémentation de la compression selon l'algorithme de Huffman, expliqué (en anglais) dans la vidéo suivante: https://www.youtube.com/watch?v=ZdooBTdW5bM
 - une implémentation de la transformée de Burrows-Wheeler, qui prédispose les données à être compressées, en réorganisant le texte. (Le décodage n'est pas encore implémenté)
+- une implémentation de l'algorithme Move-To-Front.
 
