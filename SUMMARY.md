@@ -1,7 +1,6 @@
 # Summary
 
 * [introduction](README.md)
-* [Sommaire](Dossier-projet/Sommaire.md)
 * Algorithmes
    * [Codage par plages](Dossier-projet/Codage-par-plages.md)
    * [Transformée de Burrows-Wheeler](Dossier-projet/Burrows-Wheeler.md)
