@@ -6,4 +6,5 @@
    * Codage par plages
    * Transformée de Burrows-Wheeler
    * Algorithme d'Huffman
+* Prolongements
 
