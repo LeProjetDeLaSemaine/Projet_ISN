@@ -7,5 +7,5 @@
    * [Transformée de Burrows-Wheeler](Dossier-projet/Burrows-Wheeler.md)
    * [Algorithme d'Huffman](Dossier-projet/Huffman.md)
 * Prolongements
-   * Bzip2
+   * [Bzip2](Dossier-projet/Bzip2.md)
 
