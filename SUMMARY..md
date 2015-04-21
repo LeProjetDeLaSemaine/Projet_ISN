@@ -1,7 +1,7 @@
 # Summary
 
 * [Introduction.md](Dossier-Projet/Introduction.md)
-* Sommaire
+* [Sommaire](Dossier-projet/Sommaire.md)
 * Algorithmes
    * Codage par plages
    * Transformée de Burrows-Wheeler
