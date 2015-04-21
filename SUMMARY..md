@@ -4,4 +4,5 @@
 * Sommaire
 * Algorithmes
    * Codage par plages
+   * Transformée de Burrows-Wheeler
 
