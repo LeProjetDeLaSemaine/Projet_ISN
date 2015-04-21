@@ -7,4 +7,5 @@
    * Transformée de Burrows-Wheeler
    * Algorithme d'Huffman
 * Prolongements
+   * Bzip2
 
