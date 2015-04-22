@@ -16,7 +16,7 @@ def transformation(chaine):
 
 	#TRANSFORMATION DE LA CHAINE	
 	for i in range(L):
-		chaineTransformee += tableau[i][L-1:] #la chaîne transformée est celle composée des derniers caractères de chaque chaîne du tableau => la dernière colonne 
+		chaineTransformee += tableau[i][L-1] #la chaîne transformée est celle composée des derniers caractères de chaque chaîne du tableau => la dernière colonne 
 	return chaineTransformee #on retourne l'index de la chaîne originale dans le tableau trié suivi de la chaîne transformée
 
 def decodage(chaine):
