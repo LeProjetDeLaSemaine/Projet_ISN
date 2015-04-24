@@ -6,7 +6,7 @@
 # répétitions, suivi du caractère lui-même : aaabbc => 3a2bc
 
 def isInt(s):
-        #Cette fonction permet de tester si un caractère est un entier
+        #Cette fonction permet de tester si un caractère est  la représentation d'un entier
 	try:#On essaye de forcer le caractère dans un entier
 		int(s)
 		return True # Il n'y a pas eu d'erreur donc on renvoie True
