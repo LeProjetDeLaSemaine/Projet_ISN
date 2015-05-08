@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 #-*- coding: utf-8 -*-
 
-debug = 1 #on active le debug, afin que le programme affiche plus d'informations
+debug = 0 #on active le debug, afin que le programme affiche plus d'informations
 
 def construireDico(content):
 	"""Construit un dictionnaire qui associe à chaque caractère sa fréquence dans la chaîne passée en argument"""
