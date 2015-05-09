@@ -113,6 +113,6 @@ b = Codage_par_plages.compresser(a)
 c = Huffman.compression(b)[0]
 print("TAUX DE COMPRESSION POUR BWT + RLE + HUFFMAN SUR LA GPL:",(len(c)/len(repr_bin(gpl)))*100)
 
-
+input("Appuyez pour continuer")
 
 
