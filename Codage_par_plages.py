@@ -6,7 +6,7 @@
 # répétitions, suivi du caractère lui-même : aaabbc => 3a2bc
 
 def isInt(s):
-        #Cette fonction permet de tester si un caractère est  la représentation d'un entier
+        #Cette fonction permet de tester si un caractère est la représentation d'un entier
 	try:#On essaye de forcer le caractère dans un entier
 		int(s)
 		return True # Il n'y a pas eu d'erreur donc on renvoie True
@@ -45,6 +45,6 @@ def decompresser(content):
 
 #Tests de compression de chaine
 print(compresser("AAADDDDEEEEEDDDBBBBCDGKHEJGFDJFFFFFFFFFFFFFFFFFFFFF"))
-print(decompresser("3A4D5E3D4B1C1D1G1K1H1E1J1G1F1D1J21F"))
+print(decompresser("3A4D5E3D4BCDGKHEJGFDJ21F"))
 
 

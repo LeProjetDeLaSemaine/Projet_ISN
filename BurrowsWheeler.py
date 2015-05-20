@@ -38,5 +38,5 @@ def decodage(chaine):
                         return i[1:] #On renvoie la chaine sans son premier caractère, qui correspond au délimiteur
         return None #La chaine ne contient pas le délimiteur, elle n'est donc pas transformée, on renvoie None
         
-print(transformation("BANANA"))
+print(transformation("MISSISSIPI RIVER"))
 print(decodage("BNN^AAA"))
